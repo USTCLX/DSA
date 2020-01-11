@@ -4,7 +4,8 @@
   "description": "ts react eslint prettier template",
   "main": "index.js",
   "scripts": {
-    "start":"tsc -w --pretty"
+    "start": "tsc -w --pretty",
+    "test": "jest"
   },
   "keywords": [
     "tes",
@@ -16,14 +17,20 @@
   "author": "lixiang",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-typescript": "^7.7.7",
+    "@types/jest": "^24.0.25",
     "@types/react": "^16.9.15",
     "@types/react-dom": "^16.9.4",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
+    "babel-jest": "^24.9.0",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.17.0",
+    "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.2.1",
