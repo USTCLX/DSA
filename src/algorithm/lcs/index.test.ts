@@ -1,4 +1,4 @@
-import { lscByRecursion } from "./index";
+import { lscByRecursion, lscByDynamic } from "./index";
 
 describe("lscByRecursion", () => {
   test("should return 234 when strA is 1234 and strB is 2345", () => {
@@ -16,5 +16,20 @@ describe("lscByRecursion", () => {
   });
   test("should reutrn data when strA is educational ans strB is advantage", () => {
     expect(lscByRecursion("educational", "advantage")).toBe("data");
+  });
+});
+
+describe("lscByDynamic", () => {
+  test("should return 3,wehn strA is ace and strB is abcde", () => {
+    expect(lscByDynamic("ace", "abcde")).toBe(3);
+  });
+  test("should return 3 when strA is lixiang and strB is zhangyu", () => {
+    expect(lscByDynamic("lixiang", "zhangyu")).toBe(3);
+  });
+  test("should return 0 when strA is null and strB is null", () => {
+    expect(lscByDynamic("", "")).toBe(0);
+  });
+  test("should return 1 when strA is a and strB is a", () => {
+    expect(lscByDynamic("a", "a")).toBe(1);
   });
 });
