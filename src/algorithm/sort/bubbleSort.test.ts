@@ -17,7 +17,6 @@ describe("Test bubble sort", () => {
       [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     ]
   ])("bubbleSort(%d)", (input, expected) => {
-    console.log("input", input, expected);
     expect(bubbleSort(input)).toEqual(expected);
   });
 });
