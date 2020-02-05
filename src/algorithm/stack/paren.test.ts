@@ -19,4 +19,13 @@ describe("Test paren", () => {
   test("case 6", () => {
     expect(paren("")).toBe(true);
   });
+  test("case 7 ", () => {
+    expect(paren("[{}]")).toBe(true);
+  });
+  test("case 8", () => {
+    expect(paren("()[]{}")).toBe(true);
+  });
+  test("case 9 ", () => {
+    expect(paren("{{()}}[")).toBe(false);
+  });
 });
