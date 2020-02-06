@@ -4,10 +4,11 @@
     "rootDir": "./src",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es6",
-    "jsx": "react"
+    "module": "CommonJS",
+    "target": "ES5",
+    "jsx": "react",
+    "lib": ["ES7", "ESNext.Array"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
 }
