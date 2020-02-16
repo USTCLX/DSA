@@ -1,4 +1,4 @@
-const countPrimes = (n: number) => {
+export const countPrimes = (n: number) => {
   let count = 0;
 
   const isPrime = (num: number) => {

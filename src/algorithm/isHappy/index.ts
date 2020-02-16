@@ -1,4 +1,4 @@
-const isHappy = function(n: number) {
+const isHappy = function(n: number): any {
   let result = 0;
   while (n) {
     const cur = n % 10;
@@ -8,7 +8,7 @@ const isHappy = function(n: number) {
   if (result === 1) {
     return true;
   } else {
-    isHappy(result);
+    return isHappy(result);
   }
 };
 export default isHappy;
