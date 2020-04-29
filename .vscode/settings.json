@@ -1,22 +1,22 @@
 {
-	"editor.tabSize": 2,
-	"emmet.triggerExpansionOnTab": true,
-	"emmet.includeLanguages": {
-		"javascript": "javascriptreact"
-	},
-	"git.autorefresh": true,
-	"git.autoRepositoryDetection": true,
-	"javascript.implicitProjectConfig.experimentalDecorators": true,
-	"editor.suggest.snippetsPreventQuickSuggestions": false,
-	"typescript.updateImportsOnFileMove.enabled": "always",
-	"eslint.validate": [
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact"
-	],
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
-	}
+  "editor.tabSize": 2,
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "git.autorefresh": true,
+  "git.autoRepositoryDetection": true,
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
