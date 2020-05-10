@@ -1,28 +1,25 @@
 {
   "name": "tsproj",
   "version": "0.0.1",
-  "description": "ts react eslint prettier template",
+  "description": "ts eslint prettier",
   "main": "index.js",
   "scripts": {
     "start": "tsc -w --pretty",
     "test": "jest"
   },
   "keywords": [
-    "tes",
-    "react",
+    "ts",
     "eslint",
-    "prettier",
-    "webpack"
+    "prettier"
   ],
-  "author": "lixiang",
+  "author": "xiang li",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-typescript": "^7.7.7",
     "@types/jest": "^24.0.25",
-    "@types/react": "^16.9.15",
-    "@types/react-dom": "^16.9.4",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
     "babel-jest": "^24.9.0",
@@ -32,17 +29,10 @@
     "eslint-plugin-react": "^7.17.0",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
-    "source-map-loader": "^0.2.4",
-    "ts-loader": "^6.2.1",
-    "typescript": "^3.7.3",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "typescript": "^3.7.3"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "lodash.get": "^4.4.2",
-    "lodash.set": "^4.3.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "lodash.set": "^4.3.2"
   }
 }
