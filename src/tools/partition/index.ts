@@ -6,7 +6,7 @@
  * @Description: In User Settings Edit
  * @FilePath: /tsproj/src/tools/partition.ts
  */
-import swap from "./swap";
+import swap from "../swap";
 
 export const partition = (
   data: number[],

@@ -1,4 +1,4 @@
-import deepClone from "./deepClone";
+import deepClone from "./index";
 
 describe("Test of deep clone", () => {
   test("null", () => {

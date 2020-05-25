@@ -7,7 +7,7 @@
  * @FilePath: /tsproj/src/tools/partition.test.ts
  */
 
-import { partition, partition2, partition3 } from "./partition";
+import { partition, partition2, partition3 } from "./index";
 
 describe("partition", () => {
   test("", () => {

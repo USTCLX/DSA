@@ -1,4 +1,4 @@
-import castPathToArray from "./castPathToArray";
+import castPathToArray from "./index";
 
 describe("castPathToArray", () => {
   test("", () => {
