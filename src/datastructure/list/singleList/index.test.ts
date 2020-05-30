@@ -1,9 +1,9 @@
-import { SingleLink, LinkNode } from "./index";
+import { SingleList, ListNode } from "./index";
 
-describe("SingleLink", () => {
+describe("SingleList", () => {
   test("insertAsFirst", () => {
-    const link = new SingleLink();
-    const node0 = new LinkNode(0);
+    const link = new SingleList();
+    const node0 = new ListNode(0);
     link.insertAsFirst(node0);
     expect(link.getSize()).toBe(1);
     expect(link.find(node0)).toBe(node0);
@@ -11,23 +11,23 @@ describe("SingleLink", () => {
   });
 
   test("insertBefore ", () => {
-    const link = new SingleLink();
-    const node0 = new LinkNode(0);
+    const link = new SingleList();
+    const node0 = new ListNode(0);
     link.insertAsFirst(node0);
-    const node2 = new LinkNode(2);
+    const node2 = new ListNode(2);
     link.insertAsLast(node2);
     expect(link.getValArr()).toEqual([0, 2]);
 
-    const node1 = new LinkNode(1);
+    const node1 = new ListNode(1);
     link.insertBefore(node2, node1);
     expect(link.getValArr()).toEqual([0, 1, 2]);
   });
 
   test("insertAsLast", () => {
-    const link = new SingleLink();
-    const node0 = new LinkNode(0);
-    const node1 = new LinkNode(1);
-    const node2 = new LinkNode(2);
+    const link = new SingleList();
+    const node0 = new ListNode(0);
+    const node1 = new ListNode(1);
+    const node2 = new ListNode(2);
     link.insertAsLast(node0);
     link.insertAsLast(node1);
     link.insertAsLast(node2);
@@ -35,10 +35,10 @@ describe("SingleLink", () => {
   });
 
   test("reverse", () => {
-    const link = new SingleLink();
-    const node0 = new LinkNode(0);
-    const node1 = new LinkNode(1);
-    const node2 = new LinkNode(2);
+    const link = new SingleList();
+    const node0 = new ListNode(0);
+    const node1 = new ListNode(1);
+    const node2 = new ListNode(2);
     link.insertAsLast(node0);
     link.insertAsLast(node1);
     link.insertAsLast(node2);

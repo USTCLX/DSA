@@ -1,15 +1,15 @@
-export class LinkNode {
+export class ListNode {
   val: number;
-  next: LinkNode;
+  next: ListNode;
   constructor(val: number) {
     this.val = val;
     this.next = null;
   }
 }
 
-export class SingleLink {
+export class SingleList {
   // 头元素 第-1个元素
-  private head: LinkNode;
+  private head: ListNode;
 
   private size: number;
 
@@ -35,7 +35,7 @@ export class SingleLink {
     return arr;
   }
 
-  find(e: LinkNode): LinkNode {
+  find(e: ListNode): ListNode {
     let current = this.head.next;
     while (current && current !== e) {
       current = current.next;
@@ -44,14 +44,14 @@ export class SingleLink {
   }
 
   // 将e作为头节点插入
-  insertAsFirst(e: LinkNode) {
+  insertAsFirst(e: ListNode) {
     const currentFirst = this.head.next;
     this.head.next = e;
     e.next = currentFirst;
     this.size++;
   }
 
-  insertAsLast(e: LinkNode) {
+  insertAsLast(e: ListNode) {
     let current = this.head;
     while (current && current.next !== null) {
       current = current.next;
@@ -60,7 +60,7 @@ export class SingleLink {
   }
 
   // 将e节点作为p节点的前驱插入
-  insertBefore(p: LinkNode, e: LinkNode) {
+  insertBefore(p: ListNode, e: ListNode) {
     let current = this.head;
     while (current && current.next !== p) {
       current = current.next;
@@ -73,7 +73,7 @@ export class SingleLink {
   }
 
   // 将e节点删除
-  remove(e: LinkNode) {
+  remove(e: ListNode) {
     let current = this.head;
     while (current && current.next === e) {
       current = current.next;
@@ -104,7 +104,7 @@ export class SingleLink {
   }
 
   // 遍历
-  traverse(cb: (e: LinkNode) => {}): void {
+  traverse(cb: (e: ListNode) => {}): void {
     let current = this.head.next;
     while (current) {
       cb(current);
