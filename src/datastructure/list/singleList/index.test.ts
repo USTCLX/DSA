@@ -45,4 +45,14 @@ describe("SingleList", () => {
     link.reverse();
     expect(link.getValArr()).toEqual([2, 1, 0]);
   });
+
+  test("toArray", () => {
+    const node0 = new ListNode(0);
+    const node1 = new ListNode(1);
+    const node2 = new ListNode(2);
+    node0.next = node1;
+    node1.next = node2;
+    const arr = node0.toArray();
+    expect(arr).toEqual([0, 1, 2]);
+  });
 });

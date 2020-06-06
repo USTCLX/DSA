@@ -5,6 +5,16 @@ export class ListNode {
     this.val = val;
     this.next = null;
   }
+
+  toArray() {
+    let cur = this as ListNode;
+    const arr = [];
+    while (cur) {
+      arr.push(cur.val);
+      cur = cur.next;
+    }
+    return arr;
+  }
 }
 
 export class SingleList {
