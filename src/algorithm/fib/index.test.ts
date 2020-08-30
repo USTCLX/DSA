@@ -1,4 +1,4 @@
-import fib from "./index";
+import fib, { fibByMemo } from "./index";
 
 describe("fibonacci sequence", () => {
   test("output should be 0, when input is 1", () => {
@@ -18,5 +18,23 @@ describe("fibonacci sequence", () => {
   });
   test("output should return 377,when input is 13", () => {
     expect(fib(13)).toBe(377);
+  });
+});
+
+describe("fibByMemo", () => {
+  test("0 0", () => {
+    expect(fibByMemo(0)).toBe(0);
+  });
+  test("1 1", () => {
+    expect(fibByMemo(1)).toBe(1);
+  });
+  test("2:1", () => {
+    expect(fibByMemo(2)).toBe(1);
+  });
+  test("3:2", () => {
+    expect(fibByMemo(3)).toBe(2);
+  });
+  test("4:3", () => {
+    expect(fibByMemo(4)).toBe(3);
   });
 });
