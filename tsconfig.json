@@ -7,7 +7,7 @@
     "module": "CommonJS",
     "target": "ES5",
     "jsx": "react",
-    "lib": ["ES7", "ESNext.Array"]
+    "lib": ["ES7", "ESNext.Array", "DOM"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
