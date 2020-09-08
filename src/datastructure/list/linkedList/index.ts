@@ -34,10 +34,10 @@ export default class LinkedList<T> {
       const node = new ListNode(element);
       let cur = this.head;
       if (index === 0) {
-        node.next = cur;
         this.head = node;
+        node.next = cur;
       } else {
-        let pre: ListNode<T>;
+        let pre = cur;
         for (let i = 0; i < index; i++) {
           pre = cur;
           cur = cur.next;
@@ -70,13 +70,56 @@ export default class LinkedList<T> {
     return null;
   }
 
-  remove(element: T) {}
+  remove(element: T): boolean {
+    if (!this.head) return false;
+    let pre: ListNode<T> = null;
+    let cur = this.head;
+    if (cur.val === element) {
+      this.head = cur.next;
+      this.count--;
+      return true;
+    } else {
+      for (let i = 0; i < this.count; i++) {
+        if (cur.val === element) {
+          pre.next = cur.next;
+          this.count--;
+          return true;
+        }
+        pre = cur;
+        cur = cur.next;
+      }
+    }
+    return false;
+  }
 
-  indexOf(element: T): number {}
+  indexOf(element: T): number {
+    let cur = this.head;
+    let index = -1;
+    while (cur) {
+      index++;
+      if (cur.val === element) {
+        return index;
+      }
+      cur = cur.next;
+    }
+    return index;
+  }
 
-  isEmpty(): boolean {}
+  isEmpty(): boolean {
+    return this.count === 0;
+  }
 
-  size(): number {}
+  size(): number {
+    return this.count;
+  }
 
-  toString(): string {}
+  toString(): string {
+    const ret = [];
+    let cur = this.head;
+    while (cur) {
+      ret.push(cur.val);
+      cur = cur.next;
+    }
+    return ret.join(",");
+  }
 }
