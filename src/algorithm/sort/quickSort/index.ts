@@ -62,6 +62,7 @@ function quickSort(nums: Array<number>, l: number, r: number) {
 }
 
 export default function sort(nums: Array<number>): Array<number> {
+  if (!nums || !nums.length) return nums;
   quickSort(nums, 0, nums.length - 1);
   return nums;
 }

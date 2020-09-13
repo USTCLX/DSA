@@ -1,6 +1,6 @@
 import quickSort from "./index";
 
-describe("mergeSort", () => {
+describe("quickSort", () => {
   test("[]", () => {
     expect(quickSort([])).toEqual([]);
   });
