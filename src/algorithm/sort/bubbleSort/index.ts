@@ -13,6 +13,7 @@ function bubbleSort(n: Array<number>): void {
   for (let i = 0; i < n.length; i++) {
     for (let j = 0; j < n.length - i - 1; j++) {
       if (n[j] > n[j + 1]) {
+        // 这里的交换，其实分为三条指令，因此相比插入而言，消耗更多
         swap(n, j, j + 1);
         flag = true;
       }
