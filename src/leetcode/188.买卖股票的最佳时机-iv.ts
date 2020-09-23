@@ -16,11 +16,13 @@ function greddy(prices: number[]): number {
 }
 
 function maxProfit(k: number, prices: number[]): number {
+  // 这里需要是k+1, 比如 k=2 代表可以操作0，1，2次，因此length为3
+  k = k + 1;
   // 如果天数小于等于一天，就不用买了
   if (prices.length <= 1) return 0;
 
   // 如果交易的次数可以大于交易天数的一半，可以退化为一天可以买无数次
-  if (k > prices.length) return greddy(prices);
+  if (k > prices.length / 2) return greddy(prices);
 
   // 初始化三维dp数组
   const dp = Array(prices.length);
@@ -42,7 +44,7 @@ function maxProfit(k: number, prices: number[]): number {
       dp[i][j][0] =
         j != 0
           ? Math.max(dp[i - 1][j][0], dp[i - 1][j - 1][1] + prices[i])
-          : dp[i][0][0];
+          : dp[i - 1][0][0];
       dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j][0] - prices[i]);
       profit = Math.max(dp[i][j][0], profit);
     }
