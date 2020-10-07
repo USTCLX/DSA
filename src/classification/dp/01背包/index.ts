@@ -54,7 +54,7 @@ export function calcWeightDP(tWeight: number, weight: number[]): number {
 
   for (let i = 1; i < weight.length; i++) {
     // i 放入背包
-    for (let j = 0; j <= tWeight - weight[i]; j++) {
+    for (let j = tWeight - weight[i]; j >= 0; j--) {
       if (dp[j] == true) {
         dp[j + weight[i]] = true;
       }
