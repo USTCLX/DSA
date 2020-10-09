@@ -48,6 +48,7 @@ class Result {
   }
 }
 
+// 这里找左右子树的bst，只有子树存在，最差也有一个，因为一个节点本身就是一个bst
 function find(root: TreeNode | null): Result | null {
   if (root === null) {
     return new Result(null, 0);
