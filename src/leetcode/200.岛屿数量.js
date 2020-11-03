@@ -135,7 +135,7 @@ var numIslands = function(grid) {
     for (let j = 0; j < n; j++) {
       if (cGrid[i][j] === "1") {
         count++;
-        // 对这个点进行dfs遍历并处理
+        // 对这个点进行dfs遍历并处理她周围所有为1的节点
         dfs(cGrid, i, j);
       }
     }
