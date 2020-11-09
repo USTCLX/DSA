@@ -3,8 +3,6 @@
  *
  * [200] 岛屿数量
  */
-
-// @lc code=start
 // 解法1:染色法
 // function numIslands(grid: string[][]): number {
 //   let count = 0;
@@ -33,85 +31,132 @@
 //   return count;
 // }
 
+// @lc code=start
+
 // 解法2: 并查集
-class UnionFind {
-  parent: number[];
-  rank: number[];
-  count: number = 0;
-  constructor(M: number[][]) {
-    const m = M.length;
-    const n = M[0].length;
-    this.rank = Array(m * n).fill(0);
-    this.parent = Array(m * n).fill(-1);
-    for (let i = 0; i < m; i++) {
-      for (let j = 0; j < n; j++) {
-        if (M[i][j] == 1) {
-          this.parent[i * n + j] = i * n + j;
-          this.count++;
-        }
+// class UnionFind {
+//   parent: number[];
+//   rank: number[];
+//   count: number = 0;
+//   constructor(M: number[][]) {
+//     const m = M.length;
+//     const n = M[0].length;
+//     this.rank = Array(m * n).fill(0);
+//     this.parent = Array(m * n).fill(-1);
+//     for (let i = 0; i < m; i++) {
+//       for (let j = 0; j < n; j++) {
+//         if (M[i][j] == 1) {
+//           this.parent[i * n + j] = i * n + j;
+//           this.count++;
+//         }
+//       }
+//     }
+//   }
+
+//   // 查找一个元素的parent
+//   find(i: number): number {
+//     if (this.parent[i] !== i) {
+//       this.parent[i] = this.find(this.parent[i]);
+//     }
+//     return this.parent[i];
+//   }
+
+//   // 合并两个元素
+//   union(x: number, y: number) {
+//     const rootX = this.find(x);
+//     const rootY = this.find(y);
+
+//     if (rootX !== rootY) {
+//       // 执行合并
+//       if (this.rank[rootX] > this.rank[rootY]) {
+//         this.parent[rootY] = rootX;
+//       } else if (this.rank[rootX] < this.rank[rootY]) {
+//         this.parent[rootX] = rootY;
+//       } else {
+//         // 两个rank一致
+//         this.parent[rootY] = rootX;
+//         this.rank[rootX]++;
+//       }
+//       // 合并成功，count-1
+//       this.count--;
+//     }
+//   }
+// }
+
+// function numIslands(grid: number[][]): number {
+//   if (grid.length === 0 || grid[0].length === 0) return 0;
+
+//   const m = grid.length;
+//   const n = grid[0].length;
+//   const range = [
+//     [-1, 0],
+//     [1, 0],
+//     [0, -1],
+//     [0, 1]
+//   ];
+//   const uf = new UnionFind(grid);
+
+//   for (let i = 0; i < m; i++) {
+//     for (let j = 0; j < n; j++) {
+//       if (grid[i][j] == 1) {
+//         for (let [di, dj] of range) {
+//           const ri = i + di;
+//           const rj = j + dj;
+//           if (ri >= 0 && rj >= 0 && ri < m && rj < n && grid[ri][rj] == 1) {
+//             uf.union(i * n + j, ri * n + rj);
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   return uf.count;
+// }
+
+// 再来一遍染色法
+// 这一次咱先复制一个二维数组出来，不更改原grid
+
+function dfs(grid: string[][], i: number, j: number) {
+  if (grid[i][j] == "1") {
+    grid[i][j] = "0";
+    const range = [
+      [-1, 0],
+      [1, 0],
+      [0, 1],
+      [0, -1]
+    ];
+    const m = grid.length;
+    const n = grid[0].length;
+    for (let [di, dj] of range) {
+      const ri = di + i;
+      const rj = dj + j;
+      if (ri >= 0 && rj >= 0 && ri < m && rj < n && grid[ri][rj] == "1") {
+        dfs(grid, ri, rj);
       }
-    }
-  }
-
-  // 查找一个元素的parent
-  find(i: number): number {
-    if (this.parent[i] !== i) {
-      this.parent[i] = this.find(this.parent[i]);
-    }
-    return this.parent[i];
-  }
-
-  // 合并两个元素
-  union(x: number, y: number) {
-    const rootX = this.find(x);
-    const rootY = this.find(y);
-
-    if (rootX !== rootY) {
-      // 执行合并
-      if (this.rank[rootX] > this.rank[rootY]) {
-        this.parent[rootY] = rootX;
-      } else if (this.rank[rootX] < this.rank[rootY]) {
-        this.parent[rootX] = rootY;
-      } else {
-        // 两个rank一致
-        this.parent[rootY] = rootX;
-        this.rank[rootX]++;
-      }
-      // 合并成功，count-1
-      this.count--;
     }
   }
 }
 
-function numIslands(grid: number[][]): number {
-  if (grid.length === 0 || grid[0].length === 0) return 0;
+function numIslands(grid: string[][]): number {
+  if (!grid.length || !grid[0].length) return 0;
 
-  const m = grid.length;
-  const n = grid[0].length;
-  const range = [
-    [-1, 0],
-    [1, 0],
-    [0, -1],
-    [0, 1]
-  ];
-  const uf = new UnionFind(grid);
+  const grids = grid.map(item => [...item]);
+  const m = grids.length;
+  const n = grids[0].length;
+  let count = 0;
 
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
-      if (grid[i][j] == 1) {
-        for (let [di, dj] of range) {
-          const ri = i + di;
-          const rj = j + dj;
-          if (ri >= 0 && rj >= 0 && ri < m && rj < n && grid[ri][rj] == 1) {
-            uf.union(i * n + j, ri * n + rj);
-          }
-        }
+      if (grids[i][j] == "1") {
+        count++;
+        // clear
+        dfs(grids, i, j);
       }
     }
   }
-
-  return uf.count;
+  return count;
 }
+
 // @lc code=end
 
 export { numIslands };
