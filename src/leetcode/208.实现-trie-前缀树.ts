@@ -6,63 +6,112 @@
 
 // @lc code=start
 
-const OFFSET = "a".charCodeAt(0);
+// const OFFSET = "a".charCodeAt(0);
+
+// class TrieNode {
+//   char: string = "";
+//   children: TrieNode[] = [];
+//   isEndOfWord: boolean = false;
+//   constructor(
+//     char: string = "",
+//     children: TrieNode[] = [],
+//     isEndOfWord: boolean = false
+//   ) {
+//     this.char = char;
+//     this.children = children;
+//     this.isEndOfWord = isEndOfWord;
+//   }
+// }
+
+// class Trie {
+//   root: TrieNode;
+//   constructor() {
+//     this.root = new TrieNode();
+//   }
+
+//   insert(word: string): void {
+//     let node = this.root;
+//     for (let char of word) {
+//       const index = char.charCodeAt(0) - OFFSET;
+//       if (!node.children[index]) {
+//         node.children[index] = new TrieNode(char);
+//       }
+//       node = node.children[index];
+//     }
+//     node.isEndOfWord = true;
+//   }
+
+//   search(word: string): boolean {
+//     let node = this.root;
+//     for (let char of word) {
+//       const index = char.charCodeAt(0) - OFFSET;
+//       if (!node.children[index]) {
+//         return false;
+//       } else {
+//         node = node.children[index];
+//       }
+//     }
+//     return node.isEndOfWord;
+//   }
+
+//   startsWith(prefix: string): boolean {
+//     let node = this.root;
+//     for (let char of prefix) {
+//       const index = char.charCodeAt(0) - OFFSET;
+//       if (!node.children[index]) {
+//         return false;
+//       } else {
+//         node = node.children[index];
+//       }
+//     }
+//     return true;
+//   }
+// }
+
+// 使用map来实现children
 
 class TrieNode {
   char: string;
-  children: TrieNode[];
-  isEndOfWord: boolean;
-  constructor(
-    char: string = "",
-    children: TrieNode[] = [],
-    isEndOfWord: boolean = false
-  ) {
+  isEndOfWord: boolean = false;
+  children: Map<string, TrieNode> = new Map();
+
+  constructor(char: string = "") {
     this.char = char;
-    this.children = children;
-    this.isEndOfWord = isEndOfWord;
   }
 }
 
 class Trie {
-  root: TrieNode;
-  constructor() {
-    this.root = new TrieNode();
-  }
+  root: TrieNode = new TrieNode();
 
-  insert(word: string): void {
+  insert(word: string) {
     let node = this.root;
     for (let char of word) {
-      const index = char.charCodeAt(0) - OFFSET;
-      if (!node.children[index]) {
-        node.children[index] = new TrieNode(char);
+      if (!node.children.has(char)) {
+        node.children.set(char, new TrieNode(char));
       }
-      node = node.children[index];
+      node = node.children.get(char) as TrieNode;
     }
     node.isEndOfWord = true;
   }
 
-  search(word: string): boolean {
+  search(word: string) {
     let node = this.root;
     for (let char of word) {
-      const index = char.charCodeAt(0) - OFFSET;
-      if (!node.children[index]) {
+      if (!node.children.has(char)) {
         return false;
-      } else {
-        node = node.children[index];
       }
+      node = node.children.get(char) as TrieNode;
     }
     return node.isEndOfWord;
   }
 
-  startsWith(prefix: string): boolean {
+  startsWith(word: string) {
     let node = this.root;
-    for (let char of prefix) {
-      const index = char.charCodeAt(0) - OFFSET;
-      if (!node.children[index]) {
+    for (let char of word) {
+      if (!node.children.has(char)) {
         return false;
-      } else {
-        node = node.children[index];
       }
+      node = node.children.get(char) as TrieNode;
     }
     return true;
   }
