@@ -13,7 +13,6 @@ describe("parseXml", () => {
         </item>
       </list>
     `;
-
     // 目标 json
     const json = {
       tag: "list",
@@ -45,7 +44,6 @@ describe("parseXml", () => {
         }
       ]
     };
-
     expect(parseXml(xml)).toEqual(json);
   });
 
@@ -59,7 +57,6 @@ describe("parseXml", () => {
         <value id="hema-value">frontend</value>
       </item>
     </list>`;
-
     const json = {
       tag: "list",
       children: [
@@ -108,7 +105,6 @@ describe("parseXml", () => {
         }
       ]
     };
-
     expect(parseXml(xml)).toEqual(json);
   });
 });

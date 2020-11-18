@@ -142,49 +142,79 @@
 // 感觉是被那个递归的写法带偏了。
 // 这个问题直接使用二叉搜索树中序遍历是递增的这个性质就好了
 
-// 递归
-function inOrderBST(root: TreeNode | null, visit: any) {
-  if (!root) return;
-  inOrderBST(root.left, visit);
-  visit(root.val);
-  inOrderBST(root.right, visit);
-}
+// // 递归
+// function inOrderBST(root: TreeNode | null, visit: any) {
+//   if (!root) return;
+//   inOrderBST(root.left, visit);
+//   visit(root.val);
+//   inOrderBST(root.right, visit);
+// }
 
+// function isValidBST(root: TreeNode | null) {
+//   let pre = -Infinity;
+//   let ans = true;
+//   inOrderBST(root, (val: any) => {
+//     if (pre >= val) {
+//       ans = false;
+//     }
+//     pre = val;
+//   });
+//   return ans;
+// }
+
+// // 再来一次使用循环来中序遍历一个二叉树
+// // 其实就是自己实现一个递归的栈，递归本质就是调用栈
+// function inOrderBSTByStack(root: TreeNode | null, res: number[]) {
+//   if (!root) return;
+
+//   const stack: TreeNode[] = [];
+//   while (stack.length || root) {
+//     while (root) {
+//       stack.push(root);
+//       root = root.left;
+//     }
+
+//     // 取出栈顶元素
+//     if (stack.length) {
+//       const node = stack.pop();
+//       if (node) {
+//         res.push(node.val);
+
+//         // 开始搞最下面的右子树，右子树需要重复上面的步骤
+//         root = node.right;
+//       }
+//     }
+//   }
+// }
+
+// 这个题目现在看到总算第一眼就能想到思路了
+// 但是还不能立马清晰的勾勒出中序遍历的迭代写法
+// 来吧！
 function isValidBST(root: TreeNode | null) {
-  let pre = -Infinity;
-  let ans = true;
-  inOrderBST(root, (val: any) => {
-    if (pre >= val) {
-      ans = false;
-    }
-    pre = val;
-  });
-  return ans;
-}
+  if (!root) return true;
 
-// 再来一次使用循环来中序遍历一个二叉树
-// 其实就是自己实现一个递归的栈，递归本质就是调用栈
-function inOrderBSTByStack(root: TreeNode | null, res: number[]) {
-  if (!root) return;
-
+  // 开始中序遍历
+  let prev = -Infinity; // 记录上一个节点的值
   const stack: TreeNode[] = [];
   while (stack.length || root) {
+    // 左子树依次进栈
     while (root) {
       stack.push(root);
       root = root.left;
     }
-
-    // 取出栈顶元素
-    if (stack.length) {
-      const node = stack.pop();
-      if (node) {
-        res.push(node.val);
-
-        // 开始搞最下面的右子树，右子树需要重复上面的步骤
-        root = node.right;
-      }
+    // 访问当前节点
+    const node = stack.pop();
+    if (prev >= node!.val!) {
+      return false;
+    } else {
+      prev = node!.val!;
     }
+
+    // 控制权交给当前节点的右子树
+    root = node!.right!;
   }
+
+  return true;
 }
 
 // @lc code=end
