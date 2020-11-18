@@ -42,28 +42,61 @@
 // 2、然后从右向左扫描一遍数组，记录每一个位置向右看的最大值
 // 3、❗️这一步很关键，遍历数组，然后读取当前位置左边的最大值和右边的最大值，取小者和当前值比较，得到当前位置的存水量
 // 不得不说，这就是动态规划
+// function trap(height: number[]): number {
+//   if (height.length <= 2) return 0;
+//   const dpLeft = Array(height.length).fill(0);
+//   const dpRight = Array(height.length).fill(0);
+//   const count = height.length;
+
+//   dpLeft[0] = height[0];
+//   dpRight[count - 1] = height[count - 1];
+
+//   for (let i = 1; i < count; i++) {
+//     dpLeft[i] = Math.max(dpLeft[i - 1], height[i]);
+//   }
+
+//   for (let j = count - 2; j >= 0; j--) {
+//     dpRight[j] = Math.max(dpRight[j + 1], height[j]);
+//   }
+
+//   let ans = 0;
+//   for (let i = 0; i < count; i++) {
+//     const res = Math.min(dpLeft[i], dpRight[i]) - height[i];
+//     ans += res > 0 ? res : 0;
+//   }
+//   return ans;
+// }
+
+// 经典接雨水，哈哈
+// 直接上dp
 function trap(height: number[]): number {
+  // 极值判断，如果柱子的数量小于等于2，无法形成低洼，直接返回0
   if (height.length <= 2) return 0;
-  const dpLeft = Array(height.length).fill(0);
-  const dpRight = Array(height.length).fill(0);
-  const count = height.length;
 
-  dpLeft[0] = height[0];
-  dpRight[count - 1] = height[count - 1];
+  const len = height.length;
+  // 向左看，每个柱子能看到的最大高度
+  const dpLeft = [height[0]];
+  // 向右看，每个柱子能看到的最大高度
+  const dpRight = Array(len).fill(0);
+  dpRight[len - 1] = height[len - 1];
 
-  for (let i = 1; i < count; i++) {
+  for (let i = 1; i < len; i++) {
     dpLeft[i] = Math.max(dpLeft[i - 1], height[i]);
   }
 
-  for (let j = count - 2; j >= 0; j--) {
-    dpRight[j] = Math.max(dpRight[j + 1], height[j]);
+  for (let i = len - 2; i >= 0; i--) {
+    dpRight[i] = Math.max(dpRight[i + 1], height[i]);
   }
 
-  let ans = 0;
-  for (let i = 0; i < count; i++) {
-    const res = Math.min(dpLeft[i], dpRight[i]) - height[i];
-    ans += res > 0 ? res : 0;
+  // 每个柱子能存的水量，等于Math.min(dpLeft[i],dpRight[i])-height[i];
+  // let dp = [];
+  let max = 0;
+  for (let i = 0; i < len; i++) {
+    max += Math.min(dpLeft[i], dpRight[i]) - height[i];
   }
-  return ans;
+
+  return max;
 }
 // @lc code=end
+
+export { trap };
