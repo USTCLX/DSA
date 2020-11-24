@@ -30,15 +30,29 @@
 // dp[i] = max(dp[i-1]+nums[i],nums[i])
 // 也就是说，如果dp[i-1]为负数，则对目前的结果只有负增益，可以不用管了
 
-function maxSubArray(nums: number[]): number {
-  if (!nums.length) return 0;
+// function maxSubArray(nums: number[]): number {
+//   if (!nums.length) return 0;
 
-  const dp = [nums[0]];
-  let ans = nums[0];
+//   const dp = [nums[0]];
+//   let ans = nums[0];
+//   for (let i = 1; i < nums.length; i++) {
+//     dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
+//     ans = Math.max(dp[i], ans);
+//   }
+//   return ans;
+// }
+
+// 复习一遍
+// dp[i] = max(dp[i-1]+nums[i],nums[i]);
+function maxSubArray(nums: number[]): number {
+  if (!nums.length) return -Infinity;
+  const dp = [];
+  dp[0] = nums[0];
+  let max = nums[0];
   for (let i = 1; i < nums.length; i++) {
     dp[i] = Math.max(dp[i - 1] + nums[i], nums[i]);
-    ans = Math.max(dp[i], ans);
+    max = Math.max(dp[i], max);
   }
-  return ans;
+  return max;
 }
 // @lc code=end

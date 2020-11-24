@@ -94,23 +94,42 @@
  *
  */
 
+// function lengthOfLIS(nums: number[]): number {
+//   if (!nums || !nums.length) return 0;
+//   const dp = Array(nums.length).fill(1);
+
+//   for (let i = 1; i < nums.length; i++) {
+//     let max = 0;
+//     for (let j = 0; j < i; j++) {
+//       // 只有当前的数字大于j位置的数字
+//       // 并且j位置的最长上升子序列的长度大于当前的长度，才更新max
+//       if (nums[i] > nums[j] && dp[j] > max) {
+//         max = dp[j];
+//       }
+//     }
+//     dp[i] = max + 1;
+//   }
+
+//   // dp[i] 中的最大值
+//   return dp.reduce((a, b) => (a > b ? a : b));
+// }
+
+// 复习一遍
 function lengthOfLIS(nums: number[]): number {
-  if (!nums || !nums.length) return 0;
+  if (!nums.length) return 0;
+
   const dp = Array(nums.length).fill(1);
-
+  let max = 1;
   for (let i = 1; i < nums.length; i++) {
-    let max = 0;
+    let curMax = 0;
     for (let j = 0; j < i; j++) {
-      // 只有当前的数字大于j位置的数字
-      // 并且j位置的最长上升子序列的长度大于当前的长度，才更新max
-      if (nums[i] > nums[j] && dp[j] > max) {
-        max = dp[j];
+      if (nums[i] > nums[j] && dp[j] > curMax) {
+        curMax = dp[j];
       }
+      dp[i] = curMax + 1;
+      max = Math.max(max, dp[i]);
     }
-    dp[i] = max + 1;
   }
-
-  // dp[i] 中的最大值
-  return dp.reduce((a, b) => (a > b ? a : b));
+  return max;
 }
 // @lc code=end
