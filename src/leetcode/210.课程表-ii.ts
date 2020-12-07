@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=207 lang=typescript
+ * @lc app=leetcode.cn id=210 lang=typescript
  *
- * [207] 课程表
+ * [210] 课程表 II
  */
 
 // @lc code=start
@@ -10,7 +10,7 @@ type Course = {
   inDegree: number; // 记录入度
   edges: Set<number>; // 记录被谁指向
 };
-function canFinish(numCourses: number, prerequisites: number[][]): boolean {
+function findOrder(numCourses: number, prerequisites: number[][]): number[] {
   const map = new Map<number, Course>();
   // 初始化map
   for (let i = 0; i < numCourses; i++) {
@@ -31,8 +31,10 @@ function canFinish(numCourses: number, prerequisites: number[][]): boolean {
   }
 
   let count = 0; // 当前学习了几门课程
+  let order = [];
   while (queue.length) {
     const curCourse = queue.shift();
+    order.push(curCourse!.name);
     count++; // 增加一门
     for (let course of map.values()) {
       if (course!.edges.has(curCourse!.name)) {
@@ -44,7 +46,8 @@ function canFinish(numCourses: number, prerequisites: number[][]): boolean {
     }
   }
 
-  return count === numCourses;
+  return count === numCourses ? order : [];
 }
 // @lc code=end
-export { canFinish };
+
+export { findOrder };
