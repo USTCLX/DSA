@@ -1,4 +1,4 @@
-import { threeSum } from "./15.三数之和";
+import { threeSum } from "./15.三数之和.ts";
 
 describe("Name of the group", () => {
   test("[-1,0,1,2,-1,-4]", () => {
