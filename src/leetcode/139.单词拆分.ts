@@ -32,13 +32,30 @@ function check(
 // 动态规划的解法
 // dp[i] 代表0-i这个子串是否可以被拆分
 // dp[i] = dp[q] && words.include(s[q+1~i]); 其中q的范围是0～i-1
+// function dp(s: string, wordDict: string[]): boolean {
+//   const dp = Array(s.length + 1).fill(false);
+//   dp[0] = true; // 默认 '' 在wordDict中
+//   for (let i = 0; i < s.length; i++) {
+//     for (let j = 0; j <= i; j++) {
+//       if (dp[j] && wordDict.includes(s.slice(j, i + 1))) {
+//         dp[i + 1] = true;
+//         break;
+//       }
+//     }
+//   }
+
+//   return dp[dp.length - 1];
+// }
+
+// 如果dp[i] 代表s[0,i-1]是否可以被拆分，那么代码会更清晰一点
 function dp(s: string, wordDict: string[]): boolean {
   const dp = Array(s.length + 1).fill(false);
-  dp[0] = true; // 默认 '' 在wordDict中
-  for (let i = 0; i < s.length; i++) {
-    for (let j = 0; j <= i; j++) {
-      if (dp[j] && wordDict.includes(s.slice(j, i + 1))) {
-        dp[i + 1] = true;
+  dp[0] = true;
+
+  for (let i = 1; i <= s.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (dp[j] && wordDict.includes(s.slice(j, i))) {
+        dp[i] = true;
         break;
       }
     }
