@@ -10,8 +10,8 @@ import swap from "../../../tools/swap";
 function partition1(nums: Array<number>, l: number, r: number): number {
   if (l >= r) return r;
   const pivot = nums[l];
-  let p1, p2;
-  p1 = p2 = l + 1;
+  let p1 = l + 1;
+  let p2 = l + 1;
   // l~p1-1 代表小于等于pivot的数据
   // p1~p2 代表大于pivot的数据
   // 迭代p2 到 r ，如果nums[p2]大于pivot，则交换p1和p2 的元素，p1++;
@@ -41,7 +41,7 @@ function partition2(nums: Array<number>, l: number, r: number): number {
   let p1 = l + 1;
   let p2 = r;
   while (p1 <= p2) {
-    if (nums[p1] > pvoit && nums[p2] <= pvoit) {
+    if (nums[p1] > pvoit && nums[p2] < pvoit) {
       swap(nums, p1++, p2--);
     } else if (nums[p1] <= pvoit) {
       p1++;

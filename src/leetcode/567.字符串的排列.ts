@@ -54,34 +54,74 @@ function permute(str: string[], index: number, res: string[]): void {
  * @param s2
  */
 
-function checkEqual(m1: number[], m2: number[]): boolean {
-  for (let i = 0; i < m1.length; i++) {
-    if (m1[i] !== m2[i]) {
+// function checkEqual(m1: number[], m2: number[]): boolean {
+//   for (let i = 0; i < m1.length; i++) {
+//     if (m1[i] !== m2[i]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+// function checkInclusion(s1: string, s2: string): boolean {
+//   if (s1.length > s2.length) return false;
+//   const m1 = Array(26).fill(0);
+//   const m2 = Array(26).fill(0);
+//   const base = "a".charCodeAt(0);
+//   for (let i = 0; i < s1.length; i++) {
+//     m1[s1.charCodeAt(i) - base] += 1;
+//     m2[s2.charCodeAt(i) - base] += 1;
+//   }
+
+//   const window = s1.length;
+//   for (let i = window - 1; i <= s2.length; i++) {
+//     if (checkEqual(m1, m2)) {
+//       return true;
+//     } else {
+//       m2[s2.charCodeAt(i - (window - 1)) - base] -= 1;
+//       m2[s2.charCodeAt(i + 1) - base] += 1;
+//     }
+//   }
+//   return false;
+// }
+
+function compare(chars1: number[], chars2: number[]): boolean {
+  for (let i = 0; i < chars1.length; i++) {
+    if (chars1[i] !== chars2[i]) {
       return false;
     }
   }
   return true;
 }
 
+// 滑动窗口
 function checkInclusion(s1: string, s2: string): boolean {
-  if (s1.length > s2.length) return false;
-  const m1 = Array(26).fill(0);
-  const m2 = Array(26).fill(0);
-  const base = "a".charCodeAt(0);
+  if (!s1) return true;
+  if (!s2 || s2.length < s1.length) return false;
+
+  // 统计s1中每个字符的个数
+  const chars1 = Array(26).fill(0);
+  const chars2 = Array(26).fill(0);
   for (let i = 0; i < s1.length; i++) {
-    m1[s1.charCodeAt(i) - base] += 1;
-    m2[s2.charCodeAt(i) - base] += 1;
+    chars1[s1.charCodeAt(i) - 97]++;
+    chars2[s2.charCodeAt(i) - 97]++;
   }
 
-  const window = s1.length;
-  for (let i = window - 1; i <= s2.length; i++) {
-    if (checkEqual(m1, m2)) {
+  // 窗口从左到右滑动
+  const len1 = s1.length;
+  for (let i = len1 - 1; i < s2.length; i++) {
+    if (compare(chars1, chars2)) {
       return true;
     } else {
-      m2[s2.charCodeAt(i - (window - 1)) - base] -= 1;
-      m2[s2.charCodeAt(i + 1) - base] += 1;
+      // 滑出窗口的元素的count-1
+      chars2[s2.charCodeAt(i - (len1 - 1)) - 97]--;
+      // 即将滑入窗口的元素的count+1
+      chars2[s2.charCodeAt(i + 1) - 97]++;
     }
   }
+
   return false;
 }
 // @lc code=end
+
+export { checkInclusion };
