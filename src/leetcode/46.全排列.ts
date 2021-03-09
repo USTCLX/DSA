@@ -36,35 +36,59 @@
  * @param path 代表当前排列的路径，是一个栈
  * @param result
  */
-function dfs(
-  nums: number[],
-  depth: number,
-  path: number[],
-  used: boolean[],
-  result: number[][]
-) {
-  if (depth === nums.length) {
-    result.push([...path]);
+// function dfs(
+//   nums: number[],
+//   depth: number,
+//   path: number[],
+//   used: boolean[],
+//   result: number[][]
+// ) {
+//   if (depth === nums.length) {
+//     result.push([...path]);
+//     return;
+//   }
+
+//   // 这里需要每次都从0开始遍历，而不能从depth？？？
+//   for (let i = 0; i < nums.length; i++) {
+//     if (used[i]) continue;
+//     path.push(nums[i]);
+//     used[i] = true;
+//     dfs(nums, depth + 1, path, used, result);
+//     path.pop();
+//     used[i] = false;
+//   }
+// }
+
+// // 需要递归和回溯
+// function permute(nums: number[]): number[][] {
+//   const result: number[][] = [];
+//   const path: number[] = [];
+//   const used: boolean[] = Array(nums.length).fill(false);
+//   dfs(nums, 0, path, used, result);
+//   return result;
+// }
+
+// 这种方法可以保证顺序
+function backtrack(nums: number[], res: number[][], used: Set<number>) {
+  if (used.size === nums.length) {
+    res.push([...used]);
     return;
   }
 
-  // 这里需要每次都从0开始遍历，而不能从depth？？？
   for (let i = 0; i < nums.length; i++) {
-    if (used[i]) continue;
-    path.push(nums[i]);
-    used[i] = true;
-    dfs(nums, depth + 1, path, used, result);
-    path.pop();
-    used[i] = false;
+    if (used.has(nums[i])) {
+      continue;
+    }
+    used.add(nums[i]);
+    backtrack(nums, res, used);
+    used.delete(nums[i]);
   }
 }
 
-// 需要递归和回溯
 function permute(nums: number[]): number[][] {
-  const result: number[][] = [];
-  const path: number[] = [];
-  const used: boolean[] = Array(nums.length).fill(false);
-  dfs(nums, 0, path, used, result);
-  return result;
+  const res: number[][] = [];
+  const used: Set<number> = new Set();
+  backtrack(nums, res, used);
+  return res;
 }
 // @lc code=end
