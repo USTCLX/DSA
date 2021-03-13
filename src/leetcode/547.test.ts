@@ -1,4 +1,4 @@
-import { findCircleNum } from "./547.朋友圈";
+import { findCircleNum } from "./547.省份数量";
 
 describe("findCircleNum", () => {
   test("1 ", () => {
