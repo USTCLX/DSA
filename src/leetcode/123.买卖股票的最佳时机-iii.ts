@@ -19,18 +19,45 @@
  * dp[i][k][j]  k 代表交易了几次
  */
 
-function greddy(prices: number[]): number {
-  let profit = 0;
-  for (let i = 1; i < prices.length; i++) {
-    if (prices[i] - prices[i - 1] > 0) {
-      profit += prices[i] - prices[i - 1];
-    }
-  }
-  return profit;
-}
-
 function maxProfit(prices: number[]): number {
   // 如果天数小于等于一天，就不用买了
-  if (prices.length <= 1) return 0;
+  const length = prices.length;
+  // 初始化dp
+  const dp = Array(prices.length);
+  for (let i = 0; i < length; i++) {
+    dp[i] = [];
+    for (let j = 0; j <= 2; j++) {
+      dp[i][j] = [];
+      for (let k = 0; k < 2; k++) {
+        dp[i][j][k] = 0;
+      }
+    }
+  }
+
+  // j为0
+  for (let i = 0; i < length; i++) {
+    dp[i][0][0] = 0;
+    dp[i][0][1] = -Infinity; // 没有买进过，手上却股票；不可能；
+  }
+
+  // i为0
+  for (let j = 0; j <= 2; j++) {
+    dp[0][j][0] = 0; // 第一天，买进j手，但是手上没有股票；
+    dp[0][j][1] = -prices[0]; // 第一天，买进j手，手上有一个股票；
+  }
+
+  for (let i = 1; i < length; i++) {
+    for (let j = 1; j <= 2; j++) {
+      dp[i][j][0] = Math.max(dp[i - 1][j][0], dp[i - 1][j][1] + prices[i]);
+      dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j - 1][0] - prices[i]);
+    }
+  }
+
+  let res = 0;
+  for (let j = 0; j <= 2; j++) {
+    res = Math.max(dp[length - 1][j][0]);
+  }
+
+  return res;
 }
 // @lc code=end
