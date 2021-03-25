@@ -102,19 +102,55 @@ function merge2Lists(
 // 还可以采用归并合并的思想
 // 两两配对来合并
 // 归并就会快很多，毕竟减少了一些比较
-function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
-  if (!lists.length) return null;
+// function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
+//   if (!lists.length) return null;
 
-  if (lists.length <= 2) {
-    return merge2Lists(lists[0], lists[1]);
-  } else {
-    const mid = lists.length >> 1;
+//   if (lists.length <= 2) {
+//     return merge2Lists(lists[0], lists[1]);
+//   } else {
+//     const mid = lists.length >> 1;
 
-    const left = mergeKLists(lists.slice(0, mid + 1));
-    const right = mergeKLists(lists.slice(mid + 1));
+//     const left = mergeKLists(lists.slice(0, mid + 1));
+//     const right = mergeKLists(lists.slice(mid + 1));
 
-    return merge2Lists(left, right);
+//     return merge2Lists(left, right);
+//   }
+// }
+
+function mergeLists(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+  if (!l1) return l2;
+  if (!l2) return l1;
+
+  const head = new ListNode();
+  let cur = head;
+
+  while (l1 && l2) {
+    if (l1.val <= l2.val) {
+      cur.next = new ListNode(l1.val);
+      l1 = l1.next;
+    } else {
+      cur.next = new ListNode(l2.val);
+      l2 = l2.next;
+    }
+    cur = cur.next;
   }
+
+  if (l1) cur.next = l1;
+  if (l2) cur.next = l2;
+
+  return head.next;
+}
+
+function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
+  if (!lists || !lists.length) return null;
+  if (lists.length === 1) return lists[0];
+
+  const mid = lists.length >> 1;
+
+  const left = mergeKLists(lists.slice(0, mid));
+  const right = mergeKLists(lists.slice(mid));
+
+  return mergeLists(left, right);
 }
 
 // @lc code=end
