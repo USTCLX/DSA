@@ -46,7 +46,7 @@ abstract class Heap<T> {
   protected heapifyUp(index: number) {
     let currentIndex = index;
     let parentIndex = this.getParentIndex(currentIndex);
-    while (parentIndex && this.compare(currentIndex, parentIndex)) {
+    while (parentIndex >= 0 && this.compare(currentIndex, parentIndex)) {
       this.swap(currentIndex, parentIndex);
       currentIndex = parentIndex;
       parentIndex = this.getParentIndex(parentIndex);

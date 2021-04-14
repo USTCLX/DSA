@@ -19,7 +19,7 @@ function maxSlidingWindow(nums: number[], k: number): number[] {
 
   // 初始化
   const result = [];
-  const window = [];
+  const window = []; // 存储下标
 
   for (let i = 0; i < nums.length; i++) {
     // 窗口是否移动到了边界，从k开始。删除头元素
