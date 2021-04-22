@@ -11,3 +11,12 @@ describe("Name of the group", () => {
     lru.get(2);
   });
 });
+
+test("2", () => {
+  const lru = new LRUCache(2);
+  lru.put(1, 1);
+  lru.put(2, 2);
+  expect(lru.get(1)).toBe(1);
+  lru.put(3, 3);
+  expect(lru.get(2)).toBe(2);
+});
