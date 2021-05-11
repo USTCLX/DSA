@@ -6,4 +6,6 @@
 
 const p = new Promise(resolve => resolve("1"));
 
-p.then(data => {});
+Promise.resolve("1")
+  .then("2")
+  .then(data => console.log(data));
