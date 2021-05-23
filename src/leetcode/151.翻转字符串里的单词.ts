@@ -4,6 +4,15 @@
  * [151] 翻转字符串里的单词
  */
 
+// js 一句话写法
+function reverseWords(s: string): string {
+  return s
+    .trim()
+    .split(/\s+/)
+    .reverse()
+    .join(" ");
+}
+
 // @lc code=start
 function reverseWords(s: string): string {
   let left = 0;
