@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>float</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      .left,
+      .right {
+        width: 100px;
+        height: 200px;
+        background-color: red;
+      }
+
+      .left {
+        float: left;
+      }
+      .right {
+        float: right;
+      }
+      .middle {
+        height: 400px;
+        background-color: yellow;
+        /* margin: 0 100px; */
+        overflow: auto;
+      }
+      nav#nav li:hover {
+        color: yellow;
+      }
+      li:nth-child(2):hover {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left">我是左边</div>
+    <!-- <div class="right">我是右边</div> -->
+    <div class="middle">我是中间</div>
+
+    <nav id="nav">
+      <ul>
+        <li>AAAAAA</li>
+        <li>AAAAAA</li>
+      </ul>
+    </nav>
+  </body>
+</html>
