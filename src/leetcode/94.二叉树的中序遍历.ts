@@ -1,4 +1,4 @@
-/*
+ /*
  * @lc app=leetcode.cn id=94 lang=typescript
  *
  * [94] 二叉树的中序遍历

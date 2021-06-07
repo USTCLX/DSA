@@ -67,6 +67,7 @@ function dp(s: string, wordDict: string[]): boolean {
 function wordBreak(s: string, wordDict: string[]): boolean {
   return dp(s, wordDict);
 }
+
 // @lc code=end
 
 export { wordBreak };

@@ -35,6 +35,7 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
+    "dequal": "^2.0.2",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "web-vitals": "^1.1.1"
