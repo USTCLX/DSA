@@ -18,7 +18,7 @@ function bubbleSort(n: Array<number>): void {
         flag = true;
       }
     }
-    if (!flag) return;
+    if (!flag) break;
   }
 }
 
